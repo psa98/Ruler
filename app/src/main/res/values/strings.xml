@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Ruler</string>
     <string name="sendTo">Порекомендовать приложение</string>
+    <string name="send_email">send email</string>
+    <string name="settings_button">settings button</string>
+    <string name="about_the_ruler_android_application">About The Ruler android application</string>
+    <string name="_2024">Developed by Sergey Ponomarev, © 2024</string>
+    <string name="at_461300_mail_ru" translatable="false">461300@mail.ru</string>
+    <string name="contact_developer">"Contact developer "</string>
+    <string name="instruction">Place a plastic ruler against the screen so that the \'0\' marks of the ruler and the screen ruler coincide. Move the slider on screen until the marks of the two rulers match at the 10 cm mark, then press the \'Finish\' button.</string>
+    <string name="ruler">Ruler</string>
+    <string name="calibrate_ruler">Calibrate ruler</string>
+    <string name="calibrate_short">Calibrate ruler</string>
+    <string name="app_info">About application</string>
+    <string name="info">Info</string>
+    <string name="finish">Finish</string>
 </resources>

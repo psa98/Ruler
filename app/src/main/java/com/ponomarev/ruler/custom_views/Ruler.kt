@@ -1,4 +1,4 @@
-package com.ponomarev.ruler.cusom_views
+package com.ponomarev.ruler.custom_views
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,8 +7,8 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import com.ponomarev.ruler.data.DataRepository
-import com.ponomarev.ruler.cusom_views.Ruler.Position.LEFT
-import com.ponomarev.ruler.cusom_views.Ruler.Position.RIGHT
+import com.ponomarev.ruler.custom_views.Ruler.Position.LEFT
+import com.ponomarev.ruler.custom_views.Ruler.Position.RIGHT
 
 const val FIVE_MM_DASH = 5
 const val TWO_MM_DASH = 2

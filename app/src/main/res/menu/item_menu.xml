@@ -4,23 +4,23 @@
     tools:ignore="HardcodedText">
 
     <item
-        android:title="Исправить неверную длину линейки"
+        android:title="@string/calibrate_ruler"
         android:id="@+id/calibrate_menu"
-        android:titleCondensed="Калибровать линейку"/>
+        android:titleCondensed="@string/calibrate_short"/>
 
 
-    <item
+    <!---item
         android:title="Поделиться приложением"
         android:id="@+id/share_menu"
         android:icon="@android:drawable/ic_menu_share"
         android:titleCondensed="Поделиться"
-        android:iconTint="#757575" />
+        android:iconTint="#757575" /-->
 
     <item
-        android:title="Информация о приложении"
+        android:title="@string/app_info"
         android:id="@+id/info_menu"
         android:icon="@android:drawable/ic_dialog_info"
-        android:titleCondensed="Информация"
+        android:titleCondensed="@string/info"
         android:iconTint="#757575" />
 
 

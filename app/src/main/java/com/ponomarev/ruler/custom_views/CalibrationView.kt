@@ -1,10 +1,9 @@
-package com.ponomarev.ruler.cusom_views
+package com.ponomarev.ruler.custom_views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
-const val TAG: String = "Ruler"
+
 class CalibrationView : View {
 
 
@@ -17,7 +16,6 @@ class CalibrationView : View {
     )
 
     var measureCallback: (Int)->Unit = {  }
-
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
