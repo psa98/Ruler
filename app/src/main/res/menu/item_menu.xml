@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="HardcodedText">
+
+    <item
+        android:title="Исправить неверную длину линейки"
+        android:id="@+id/calibrate_menu"
+        android:titleCondensed="Калибровать линейку"/>
+
+
+    <item
+        android:title="Поделиться приложением"
+        android:id="@+id/share_menu"
+        android:icon="@android:drawable/ic_menu_share"
+        android:titleCondensed="Поделиться"
+        android:iconTint="#757575" />
+
+    <item
+        android:title="Информация о приложении"
+        android:id="@+id/info_menu"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:titleCondensed="Информация"
+        android:iconTint="#757575" />
+
+
+
+
+</menu>

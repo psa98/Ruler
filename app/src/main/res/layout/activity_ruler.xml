@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:keepScreenOn="true"
+    tools:context=".RulerActivity">
+
+    <com.ponomarev.ruler.CalibrationView
+        android:background="@android:color/transparent"
+        android:id="@+id/calibrationSquare"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="5mm"
+        android:layout_height="100mm"/>
+
+
+    <com.ponomarev.ruler.Ruler
+        android:id="@+id/rulerLeft"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="16mm"
+        android:layout_height="match_parent"/>
+
+    <com.ponomarev.ruler.Ruler
+        android:id="@+id/rulerRight"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="16mm"
+        android:layout_height="match_parent"/>
+
+    <ImageButton
+        android:layout_margin="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rulerRight"
+        android:background="@drawable/ic_action_name"
+        android:id="@+id/menuAnchor"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:contentDescription="settings button" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/instruction"
+        android:text="Приложите к экрану линейку, так что бы '0' линейки и экранной линейки совпал.\nПеремещайте ползунок пока у двух линеек не совпадут штрихи против отметки 10 см, после этого нажмите кнопку 'Завершить'"
+        android:justificationMode="inter_word"
+        android:layout_margin="12dp"
+        app:layout_constraintTop_toBottomOf="@id/menuAnchor"
+        app:layout_constraintStart_toEndOf="@id/rulerLeft"
+        app:layout_constraintEnd_toStartOf="@id/rulerRight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.slider.Slider
+        android:layout_marginTop="120dp"
+        android:visibility="gone"
+        android:rotation="270"
+        android:id="@+id/slider"
+        android:layout_width="320dp"
+        android:layout_height="90dp"
+        android:valueFrom="0.70"
+        android:value="1.0"
+        android:valueTo="1.30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:visibility="gone"
+        android:text="Завершить калибровку"
+        app:layout_constraintTop_toBottomOf="@id/slider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="160dp"
+        android:id="@+id/finishCalibration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
