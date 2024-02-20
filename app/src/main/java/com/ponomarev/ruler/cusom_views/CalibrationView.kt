@@ -1,4 +1,4 @@
-package com.ponomarev.ruler
+package com.ponomarev.ruler.cusom_views
 
 import android.content.Context
 import android.util.AttributeSet

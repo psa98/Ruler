@@ -1,7 +1,6 @@
-package com.ponomarev.ruler
+package com.ponomarev.ruler.data
 
-import androidx.lifecycle.MutableLiveData
-
+import com.ponomarev.ruler.App
 
 
 object DataRepository {

@@ -8,7 +8,7 @@
     android:keepScreenOn="true"
     tools:context=".RulerActivity">
 
-    <com.ponomarev.ruler.CalibrationView
+    <com.ponomarev.ruler.cusom_views.CalibrationView
         android:background="@android:color/transparent"
         android:id="@+id/calibrationSquare"
         app:layout_constraintTop_toTopOf="parent"
@@ -17,14 +17,14 @@
         android:layout_height="100mm"/>
 
 
-    <com.ponomarev.ruler.Ruler
+    <com.ponomarev.ruler.cusom_views.Ruler
         android:id="@+id/rulerLeft"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="16mm"
         android:layout_height="match_parent"/>
 
-    <com.ponomarev.ruler.Ruler
+    <com.ponomarev.ruler.cusom_views.Ruler
         android:id="@+id/rulerRight"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

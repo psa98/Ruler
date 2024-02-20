@@ -12,8 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.google.android.material.slider.Slider
-import com.ponomarev.ruler.Ruler.Position.LEFT
-import com.ponomarev.ruler.Ruler.Position.RIGHT
+import com.ponomarev.ruler.cusom_views.CalibrationView
+import com.ponomarev.ruler.cusom_views.Ruler
+import com.ponomarev.ruler.cusom_views.Ruler.Position.LEFT
+import com.ponomarev.ruler.cusom_views.Ruler.Position.RIGHT
+import com.ponomarev.ruler.data.DataRepository
 
 class RulerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
