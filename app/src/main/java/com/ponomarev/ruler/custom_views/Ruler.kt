@@ -17,9 +17,9 @@ const val TEXT_MARGIN = 5
 const val TEXT_SIZE = 4
 
 class Ruler : View {
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
@@ -27,7 +27,6 @@ class Ruler : View {
 
     private var pixelsInMm = 0f
     private var rulerLen = 0f
-    private var rulerInCm = 0f
     private var rulerInMm = 0f
     private var fullHeight = 0f
     private var mmLines = emptyList<Float>().toMutableList()
@@ -57,7 +56,6 @@ class Ruler : View {
     private fun calculateRulerParams() {
         mmLines.clear()
         rulerLen = fullHeight
-        rulerInCm = rulerLen / (pixelsInMm * 10)
         rulerInMm = rulerLen / (pixelsInMm)
         for (lineNumber in rulerInMm.toInt() downTo 0) {
             mmLines.add((lineNumber * pixelsInMm))
@@ -107,6 +105,4 @@ class Ruler : View {
         fullHeight = bottom.toFloat()
         if (pixelsInMm != 0f) calculateRulerParams()
     }
-
-
 }

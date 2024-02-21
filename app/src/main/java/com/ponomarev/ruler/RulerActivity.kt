@@ -47,7 +47,6 @@ class RulerActivity : AppCompatActivity() {
                 rulerRight.calParameter = param
                 slider.value = param
             }
-            rulerLeft.calParameter = 1f
             slider.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->
                 rulerLeft.calParameter = value
                 rulerRight.calParameter = value
