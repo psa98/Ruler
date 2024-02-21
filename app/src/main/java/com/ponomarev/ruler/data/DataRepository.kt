@@ -13,4 +13,10 @@ object DataRepository {
             field = value
             sharedPreferences.edit().putFloat("calParameter", value).apply()
         }
+
+    var darkTheme: Boolean = sharedPreferences.getBoolean("darkTheme", false)
+        set(value) {
+            field = value
+            sharedPreferences.edit().putBoolean("darkTheme", value).apply()
+        }
 }

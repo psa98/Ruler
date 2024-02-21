@@ -11,6 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ruler_round"
         android:supportsRtl="true"
+        android:forceDarkAllowed="true"
         android:theme="@style/Theme.Ruler"
         tools:targetApi="31">
         <activity

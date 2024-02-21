@@ -1,14 +1,17 @@
 package com.ponomarev.ruler.custom_views
 
+import android.R
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
-import com.ponomarev.ruler.data.DataRepository
 import com.ponomarev.ruler.custom_views.Ruler.Position.LEFT
 import com.ponomarev.ruler.custom_views.Ruler.Position.RIGHT
+import com.ponomarev.ruler.data.DataRepository
+
 
 const val FIVE_MM_DASH = 5
 const val TWO_MM_DASH = 2
@@ -20,10 +23,21 @@ class Ruler : View {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+        context, attrs, defStyleAttr
     )
+
+    private var backgroundColor = 0
+    private var dashColor = 0
+
+    init {
+        context.theme.apply {
+            val typedValue = TypedValue()
+            resolveAttribute(R.attr.colorPrimary, typedValue, true)
+            dashColor = typedValue.data
+            resolveAttribute(R.attr.colorBackground, typedValue, true)
+            backgroundColor = typedValue.data
+        }
+    }
 
     private var pixelsInMm = 0f
     private var rulerLen = 0f
@@ -39,12 +53,9 @@ class Ruler : View {
         }
 
     enum class Position {
-        LEFT,
-        RIGHT
+        LEFT, RIGHT
     }
 
-
-    //выставим показатель сеттером
     var calibrated10cmHeight = 0
         set(value) {
             field = value
@@ -60,24 +71,25 @@ class Ruler : View {
         for (lineNumber in rulerInMm.toInt() downTo 0) {
             mmLines.add((lineNumber * pixelsInMm))
         }
-        blackPaint.textSize = TEXT_SIZE * pixelsInMm / calParameter
+        dashPaint.textSize = TEXT_SIZE * pixelsInMm / calParameter
         invalidate()
     }
 
-    private val blackPaint = Paint().apply {
-        color = Color.BLACK
+    private val dashPaint = Paint().apply {
+        color = dashColor
         style = Paint.Style.FILL_AND_STROKE
         strokeWidth = 0f
     }
 
-    private val whitePaint = Paint().apply {
-        color = Color.WHITE
+    private val backgroundPaint = Paint().apply {
+        color = backgroundColor
         style = Paint.Style.FILL_AND_STROKE
         strokeWidth = 0f
     }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawRect(0f,0f, width.toFloat(), height.toFloat(),whitePaint)
+        canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), backgroundPaint)
         mmLines.forEachIndexed() { index, position ->
             val tickWidth = when {
                 index % 5 == 0 && index % 10 != 0 -> pixelsInMm * FIVE_MM_DASH / calParameter
@@ -85,16 +97,17 @@ class Ruler : View {
                 else -> pixelsInMm * TWO_MM_DASH / calParameter
             }
             when (side) {
-                LEFT -> canvas.drawLine(0f, position, tickWidth, position, blackPaint)
-                RIGHT ->
-                    canvas.drawLine(width - tickWidth, position, width.toFloat(),
-                        position, blackPaint)
+                LEFT -> canvas.drawLine(0f, position, tickWidth, position, dashPaint)
+                RIGHT -> canvas.drawLine(
+                    width - tickWidth, position, width.toFloat(), position, dashPaint
+                )
             }
             var text = (index / 10).toString()
             if (index / 10 < 10) text = "  $text"
             if (index % 10 == 0) {
-                canvas.drawText(text, pixelsInMm * TEXT_MARGIN / calParameter,
-                    position, blackPaint)
+                canvas.drawText(
+                    text, pixelsInMm * TEXT_MARGIN / calParameter, position, dashPaint
+                )
             }
         }
     }

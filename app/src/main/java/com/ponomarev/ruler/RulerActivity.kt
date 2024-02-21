@@ -3,15 +3,19 @@ package com.ponomarev.ruler
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.google.android.material.slider.Slider
 import com.ponomarev.ruler.custom_views.Ruler.Position.LEFT
 import com.ponomarev.ruler.custom_views.Ruler.Position.RIGHT
 import com.ponomarev.ruler.data.DataRepository
+import com.ponomarev.ruler.data.DataRepository.darkTheme
 import com.ponomarev.ruler.databinding.ActivityRulerBinding
 
 
@@ -25,11 +29,12 @@ class RulerActivity : AppCompatActivity() {
         binding = ActivityRulerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
+        window.statusBarColor = ContextCompat.getColor(this, android.R.color.darker_gray)
         window.navigationBarColor = ContextCompat.getColor(
             this,
-            android.R.color.transparent
+            android.R.color.darker_gray
         )
+        setDefaultNightMode(if (darkTheme) MODE_NIGHT_YES else MODE_NIGHT_NO)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -65,17 +70,24 @@ class RulerActivity : AppCompatActivity() {
     private fun popupMenu(view: View) {
         val popupMenu = PopupMenu(this, view)
         popupMenu.menuInflater.inflate(R.menu.item_menu, popupMenu.menu)
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q)
-            popupMenu.setForceShowIcon(true)
+        popupMenu.setForceShowIcon(true)
+        if (darkTheme) popupMenu.menu.findItem(R.id.theme)?.apply {
+            this.setTitle(getString(R.string.light_theme))
+        }
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.calibrate_menu -> calibrate()
-                //R.id.share_menu -> shareApp()
+                R.id.theme -> changeTheme()
                 R.id.info_menu -> startActivity(Intent(this, InfoActivity::class.java))
             }
             true
         }
         popupMenu.show()
+    }
+
+    private fun changeTheme() {
+        darkTheme = !darkTheme
+        setDefaultNightMode(if (darkTheme) MODE_NIGHT_YES else MODE_NIGHT_NO)
     }
 
     private fun calibrate() {

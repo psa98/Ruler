@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:keepScreenOn="true"
+    android:theme="@style/Base.Theme.Ruler"
     tools:context=".RulerActivity">
 
     <com.ponomarev.ruler.custom_views.CalibrationView
@@ -36,6 +36,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/rulerRight"
         android:background="@drawable/ic_action_name"
+        android:backgroundTint="@android:color/darker_gray"
         android:id="@+id/menuAnchor"
         android:layout_width="32dp"
         android:layout_height="32dp"

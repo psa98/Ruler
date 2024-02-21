@@ -14,4 +14,6 @@
     <string name="app_info">About application</string>
     <string name="info">Info</string>
     <string name="finish">Finish</string>
+    <string name="light_theme">Light color theme</string>
+    <string name="dark_theme">Dark color theme</string>
 </resources>

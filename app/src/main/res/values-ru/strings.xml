@@ -14,4 +14,6 @@
     <string name="app_info">Информация о приложении</string>
     <string name="info">Информация</string>
     <string name="finish">Завершить</string>
+    <string name="light_theme">Светлая тема</string>
+    <string name="dark_theme">Темная тема</string>
 </resources>

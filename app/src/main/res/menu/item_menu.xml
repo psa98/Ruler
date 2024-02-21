@@ -9,6 +9,11 @@
         android:titleCondensed="@string/calibrate_short"/>
 
 
+    <item
+     android:title="@string/dark_theme"
+     android:id="@+id/theme"
+     android:titleCondensed="Темная тема" />
+
     <!---item
         android:title="Поделиться приложением"
         android:id="@+id/share_menu"

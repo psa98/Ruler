@@ -3,7 +3,12 @@
     <style name="Base.Theme.Ruler" parent="Theme.Material3.DayNight.NoActionBar">
 
         <!-- Customize your light theme here. -->
-        <!--item name="android:statusBarColor">@android:color/transparent</item-->
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:colorPrimary">@android:color/black</item>
+        <item name="android:colorPrimaryDark">@android:color/darker_gray</item>
+        <item name="android:colorAccent">?attr/colorError</item>
+        <item name="android:colorSecondary">?attr/actionModeSplitBackground</item>
+
     </style>
 
     <style name="Theme.Ruler" parent="Base.Theme.Ruler" />
