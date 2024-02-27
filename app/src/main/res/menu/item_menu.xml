@@ -14,12 +14,12 @@
      android:id="@+id/theme"
      android:titleCondensed="Темная тема" />
 
-    <!---item
-        android:title="Поделиться приложением"
+    <item
+        android:title="@string/share_app"
         android:id="@+id/share_menu"
         android:icon="@android:drawable/ic_menu_share"
         android:titleCondensed="Поделиться"
-        android:iconTint="#757575" /-->
+        android:iconTint="#757575" />
 
     <item
         android:title="@string/app_info"

@@ -2,6 +2,8 @@ package com.ponomarev.ruler
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -25,7 +27,8 @@ class RulerActivity : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+         super.onCreate(savedInstanceState)
         binding = ActivityRulerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
@@ -61,7 +64,6 @@ class RulerActivity : AppCompatActivity() {
                 slider.isVisible = false
                 finishCalibration.isVisible = false
                 instruction.isVisible = false
-
             }
         }
     }
@@ -77,6 +79,7 @@ class RulerActivity : AppCompatActivity() {
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.calibrate_menu -> calibrate()
+                R.id.share_menu -> shareApp()
                 R.id.theme -> changeTheme()
                 R.id.info_menu -> startActivity(Intent(this, InfoActivity::class.java))
             }

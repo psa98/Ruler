@@ -16,4 +16,5 @@
     <string name="finish">Finish</string>
     <string name="light_theme">Light color theme</string>
     <string name="dark_theme">Dark color theme</string>
+    <string name="share_app">Share app</string>
 </resources>
