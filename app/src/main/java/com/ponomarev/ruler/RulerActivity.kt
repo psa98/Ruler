@@ -2,42 +2,44 @@ package com.ponomarev.ruler
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.app.AppCompatDelegate.*
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import com.google.android.material.slider.Slider
 import com.ponomarev.ruler.custom_views.Ruler.Position.LEFT
 import com.ponomarev.ruler.custom_views.Ruler.Position.RIGHT
 import com.ponomarev.ruler.data.DataRepository
-import com.ponomarev.ruler.data.DataRepository.darkTheme
 import com.ponomarev.ruler.databinding.ActivityRulerBinding
 
 
 class RulerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRulerBinding
+    private lateinit var dataRepository: DataRepository
 
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
-
-         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        dataRepository = DataRepository.getInstance(this)
         binding = ActivityRulerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        window.statusBarColor = ContextCompat.getColor(this, android.R.color.darker_gray)
-        window.navigationBarColor = ContextCompat.getColor(
-            this,
-            android.R.color.darker_gray
-        )
-        setDefaultNightMode(if (darkTheme) MODE_NIGHT_YES else MODE_NIGHT_NO)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        setDefaultNightMode(if (dataRepository.darkTheme) MODE_NIGHT_YES else MODE_NIGHT_NO)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -48,9 +50,9 @@ class RulerActivity : AppCompatActivity() {
             rulerLeft.side = LEFT
             rulerRight.side = RIGHT
             calibrationView.measureCallback = { height ->
-                rulerLeft.calibrated10cmHeight = height
-                rulerRight.calibrated10cmHeight = height
-                val param = DataRepository.calParameter
+                rulerLeft.calibrated10cmSize = height
+                rulerRight.calibrated10cmSize = height
+                val param = dataRepository.calParameter
                 rulerLeft.calParameter = param
                 rulerRight.calParameter = param
                 slider.value = param
@@ -58,7 +60,7 @@ class RulerActivity : AppCompatActivity() {
             slider.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->
                 rulerLeft.calParameter = value
                 rulerRight.calParameter = value
-                DataRepository.calParameter = value
+                dataRepository.calParameter = value
             })
             finishCalibration.setOnClickListener {
                 slider.isVisible = false
@@ -73,8 +75,8 @@ class RulerActivity : AppCompatActivity() {
         val popupMenu = PopupMenu(this, view)
         popupMenu.menuInflater.inflate(R.menu.item_menu, popupMenu.menu)
         popupMenu.setForceShowIcon(true)
-        if (darkTheme) popupMenu.menu.findItem(R.id.theme)?.apply {
-            this.setTitle(getString(R.string.light_theme))
+        if (dataRepository.darkTheme) popupMenu.menu.findItem(R.id.theme)?.apply {
+            title = getString(R.string.light_theme)
         }
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -89,8 +91,8 @@ class RulerActivity : AppCompatActivity() {
     }
 
     private fun changeTheme() {
-        darkTheme = !darkTheme
-        setDefaultNightMode(if (darkTheme) MODE_NIGHT_YES else MODE_NIGHT_NO)
+        dataRepository.darkTheme = !dataRepository.darkTheme
+        setDefaultNightMode(if (dataRepository.darkTheme) MODE_NIGHT_YES else MODE_NIGHT_NO)
     }
 
     private fun calibrate() {

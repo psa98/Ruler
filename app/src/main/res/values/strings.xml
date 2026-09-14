@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Ruler</string>
-    <string name="sendTo">Порекомендовать приложение</string>
-    <string name="send_email">send email</string>
-    <string name="settings_button">settings button</string>
+    <string name="sendTo">Recommend App</string>
+    <string name="send_email">Send email</string>
+    <string name="settings_button">Settings</string>
     <string name="about_the_ruler_android_application">About The Ruler android application</string>
     <string name="_2024">Developed by Sergey Ponomarev, © 2024</string>
     <string name="at_461300_mail_ru" translatable="false">461300@mail.ru</string>
@@ -17,4 +17,5 @@
     <string name="light_theme">Light color theme</string>
     <string name="dark_theme">Dark color theme</string>
     <string name="share_app">Share app</string>
+    <string name="no_email_app">No email app found</string>
 </resources>

@@ -1,33 +1,51 @@
 package com.ponomarev.ruler
 
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.ponomarev.ruler.databinding.ActivityInfoBinding
-import com.ponomarev.ruler.databinding.ActivityRulerBinding
 
 class InfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityInfoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         binding = ActivityInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.email.setOnClickListener { sendMail() }
-        binding.email.setEndIconOnClickListener { sendMail() }
-        binding.input.setOnClickListener { sendMail() }
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        with(binding) {
+            email.setEndIconOnClickListener { sendMail() }
+            input.setOnClickListener { sendMail() }
+        }
     }
 
     private fun sendMail() {
-        val emailIntent = Intent()
-        val topic = getString(R.string.about_the_ruler_android_application)
-        emailIntent.apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, topic)
-            data = Uri.parse("mailto:461300@mail.ru")
+        val emailAddress = getString(R.string.at_461300_mail_ru)
+        val subject = getString(R.string.about_the_ruler_android_application)
+        
+        val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+            data = "mailto:$emailAddress".toUri()
+            putExtra(Intent.EXTRA_SUBJECT, subject)
         }
-        startActivity(Intent.createChooser(emailIntent, getText(R.string.sendTo)))
+
+        try {
+            val chooserTitle = getString(R.string.sendTo)
+            startActivity(Intent.createChooser(emailIntent, chooserTitle))
+        } catch (_: Exception) {
+            Toast.makeText(this, R.string.no_email_app, Toast.LENGTH_SHORT).show()
+        }
     }
 }

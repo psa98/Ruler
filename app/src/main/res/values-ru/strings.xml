@@ -3,7 +3,7 @@
     <string name="app_name">Линейка</string>
     <string name="sendTo">Порекомендовать приложение</string>
     <string name="send_email">Отправить письмо</string>
-    <string name="settings_button">Кнопка настроек</string>
+    <string name="settings_button">Настройки</string>
     <string name="instruction">Приложите к экрану линейку так, чтобы \'0\' линейки и экранной линейки совпал. Перемещайте ползунок, пока у двух линеек не совпадут штрихи против отметки 10 см, после этого нажмите кнопку \'Завершить\'</string>
     <string name="about_the_ruler_android_application">О приложении "Линейка"</string>
     <string name="_2024">Автор - Пономарев Сергей, © 2024</string>
@@ -17,4 +17,5 @@
     <string name="light_theme">Светлая тема</string>
     <string name="dark_theme">Темная тема</string>
     <string name="share_app">Поделиться приложением</string>
+    <string name="no_email_app">Приложение для электронной почты не найдено</string>
 </resources>
